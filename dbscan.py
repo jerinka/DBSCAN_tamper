@@ -14,8 +14,9 @@ def get_files(path):
 
 class DbscanTamper:
     """ Class for getting orb keypoints and clustering using DBSCAN to detect forgery"""
-    def __init__(self):
+    def __init__(self, showflag=True):
         self.orb = cv2.ORB_create()
+        self.showflag = showflag
 
     def kpDetector(self, img):
         kp = self.orb.detect(img, None)
@@ -46,24 +47,27 @@ class DbscanTamper:
             if len(points)>1:
                 for idx1 in range(len(points)):
                     for idx2 in range(idx1+1,len(points)):
-                        cv2.line(forgery,points[idx2],points[idx1],(255,0,0),5)
+                        if self.showflag:
+                            cv2.line(forgery,points[idx2],points[idx1],(255,0,0),5)
                         forg_flag = True
-        self.show(forgery, 'forgery:')
-        cv2.destroyAllWindows()
+        if self.showflag:
+            self.show(forgery, 'forgery:')
+            cv2.destroyAllWindows()
 
         return forg_flag
 
 
     def det_forgery(self, img):
         key_points,descriptors=self.kpDetector(img)
-        self.show_kp(img, key_points)
+        if self.showflag:
+            self.show_kp(img, key_points)
 
         clusters=self.make_clusters(descriptors)
         forg_flag = self.locate_forgery(img,clusters,key_points)
         return forg_flag
 
 if __name__=='__main__':  
-    sbscan_obj = DbscanTamper()
+    sbscan_obj = DbscanTamper(showflag = True)
     org_path = 'data/org'
     tamp_path = 'data/tamp'
 
