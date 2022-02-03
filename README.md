@@ -5,7 +5,7 @@ Detecting image tamper using DBSCAN clustering of orb features
 ```python3 dbscan.py```
 
 ## Tampered case
-[!Tampered](data/Forgery.png)
+![Tampered](data/Forgery.png)
 
 ## Original case
-[!Original](data/Original.png)
+![Original](data/Original.png)
