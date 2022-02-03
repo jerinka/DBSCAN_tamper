@@ -1,2 +1,2 @@
 # DBSCAN_tamper
-Detecting image tamper using DBSCAN sclustering of orb features
+Detecting image tamper using DBSCAN clustering of orb features
