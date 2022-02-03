@@ -27,7 +27,7 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: install unittest
-        run: pip instasll unittest
+        run: pip install unittest
 
       - name: Run a one-line script
         run: python3 test_dbscan.py
